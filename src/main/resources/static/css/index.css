@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Pacifico&display=swap');
+
+#location {
+    display: inline;
+}
+#country {
+    display: inline;
+}
+
+.card, #currentIcon {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+}
+table {
+    table-layout: auto!important;
+    width: 180px!important;
+    white-space: nowrap!important;
+}
+td {
+    text-align: center!important;
+}
+#dailyModalDialog{
+    position: relative;
+    display: table; /* This is important */
+    overflow-x: auto;
+    width: auto;
+    min-width: 300px;
+}
+#hourlyModalDialog{
+    position: relative;
+    overflow-y: initial!important;
+    overflow-x: auto;
+    width: auto;
+    min-width: 400px;
+    min-height: 100px;
+}
+body {
+    color: #F4F1DE;
+    background-color: #3D405B;
+    font-family: 'Lato', sans-serif;
+}
+#currentWeatherCard {
+    color: #3D405B;
+    background-color: #F2CC8F;
+    border: #E07A5F 2px dashed;
+}
+#currentWeatherCard:hover {
+    border: #81B29A 2px dashed;
+}
+#mainTitle{
+    font-family: 'Pacifico', cursive;
+    font-size: 32px;
+    color: #E07A5F;
+}
+#mainTitle:hover{
+    cursor: pointer;
+    font-size: 32px;
+    color: #81B29A
+}
+.myLink:hover{
+    cursor: pointer;
+    color: #81B29A;
+}
+.myLink {
+    color: #E07A5F;
+}
+.alert {
+    width:30%;
+}
+.modal-title {
+   color: #3D405B;
+}
+#currentLocButton:hover {
+    color: #81B29A;
+    cursor: pointer;
+    text-decoration: underline;
+}
+#currentLocButton {
+    color: #E07A5F;
+}

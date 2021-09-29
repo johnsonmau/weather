@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>EasyWeather</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/title.css">
+    <script src="js/index.js"></script>
+</head>
+<body>
+<br>
+<div id="mainDiv" align="center">
+    <h1 id="mainTitle">Welcome to EasyWeather.com!</h1><br>
+    <p>Quickly get the weather in your area or anywhere you'd like.<br>You can easily choose between a current, hourly, or daily forecast</p>
+
+    <div>
+    <small type="button" id="showRecentLoc" class="myLink" data-bs-toggle="collapse" data-bs-target="#recentLocCollapse">Show recently searched locations</small>
+    <div class="collapse" id="recentLocCollapse" th:each="loc, iter : ${lastThreeLocs}" th:if="${lastThreeLocs != null && lastThreeLocs.size() > 0}">
+        <small style="color: #81B29A" th:text="'['+(${iter.index}+1)+'] '"></small>
+        <small class="myLink recentLoc" th:text="${loc}"></small>
+    </div>
+    </div>
+    <br th:if="${lastThreeLocs != null && lastThreeLocs.size() > 0}">
+    <form action="/home" method="get">
+        <svg alt="Get Current Location" id="currentLocButton" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pin-map-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z"/>
+            <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"/>
+        </svg>
+        <input class="form-control" th:value="${inputLocation} == null ? '' : ${inputLocation}" style="width: 345px;"
+               placeholder="Enter an Address, City, State or Postal Code" id="location" name="location" type="text" required>
+        <small id="getWeatherLink" class="myLink">Get Weather<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cloud-sun-fill" viewBox="0 0 16 16">
+            <path d="M11.473 11a4.5 4.5 0 0 0-8.72-.99A3 3 0 0 0 3 16h8.5a2.5 2.5 0 0 0 0-5h-.027z"/>
+            <path d="M10.5 1.5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 1 0v-1zm3.743 1.964a.5.5 0 1 0-.707-.707l-.708.707a.5.5 0 0 0 .708.708l.707-.708zm-7.779-.707a.5.5 0 0 0-.707.707l.707.708a.5.5 0 1 0 .708-.708l-.708-.707zm1.734 3.374a2 2 0 1 1 3.296 2.198c.199.281.372.582.516.898a3 3 0 1 0-4.84-3.225c.352.011.696.055 1.028.129zm4.484 4.074c.6.215 1.125.59 1.522 1.072a.5.5 0 0 0 .039-.742l-.707-.707a.5.5 0 0 0-.854.377zM14.5 6.5a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+        </svg></small><br>
+    </form>
+    <br>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </symbol>
+    </svg>
+    <div class="alert alert-danger alert-dismissible fade show" th:if="${error != null}" >
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+        <small th:text="${error}"></small>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div id="noInputErr" class="alert alert-danger alert-dismissible fade show" hidden="true" >
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+        <small>You must enter a location.</small>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div id="searchSpinner" class="spinner-border" role="status" hidden="true">
+    </div>
+</div>
+
+
+<div id="currentWeatherCard" class="card" style="width: 30rem;" th:if="${location} != null">
+    <div class="card-body" align="center" style="display: inline">
+        <img id="currentIcon" th:src="'http://openweathermap.org/img/wn/'+${hourlyForecast.get(0).getWeather().get(0).getIcon()}+'@2x.png'" alt="" width="100px" height="100px">
+        <h5 class="card-title" style="font-weight: bolder" id="fullLocation" th:text="${location}"></h5>
+        <span class="card-text" th:text="'As of ' + ${currentForecast.unixDateConverter(currentForecast.getDt(), 'MM-dd-yyyy hh:mm a')}"></span><br><br>
+        <span class="card-text" th:text="'It is currently '+ ${currentForecast.getTemp()}+'°, feels like '+ ${currentForecast.getFeelsLike()}+'°'"></span><br>
+        <span class="card-text" th:text="${currentForecast.getWeather().get(0).getDescription()}"></span><br>
+        <h5 style="display: inline; font-weight: bolder" class="card-text" th:text="${dailyForecasts.get(0).getTemp().getMax()}+'°'"></h5>
+        <span class="card-text" th:text="'/'+${dailyForecasts.get(0).getTemp().getMin()}+'°'"></span><br>
+        <span class="card-text" th:text="'Wind Speed: '+ ${currentForecast.getWindSpeed()}+'MPH'"></span><br>
+        <span class="card-text" th:text="'Wind Gust: '+ ${currentForecast.getWindGust()}+'MPH'"></span><br>
+        <span class="card-text" th:text="'Sunrise: ' + ${currentForecast.unixDateConverter(currentForecast.getSunrise(), 'hh:mm a')}"></span><br>
+        <span class="card-text" th:text="'Sunset: ' + ${currentForecast.unixDateConverter(currentForecast.getSunset(), 'hh:mm a')}"></span><br>
+        <br>
+        <a href="#" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#sevenDayModal">View 7 Day Forecast</a>
+        <a href="#" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#hourlyModal">View Hourly Forecast</a>
+    </div>
+</div>
+
+<div class="modal fade" id="sevenDayModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div id="dailyModalDialog" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" text-center>
+                <h3 class="modal-title w-100" align="center" style="font-weight: bolder">7 Day Forecast</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="dailyForecastDiv" th:if="${location} != null" align="center">
+                <table class="table align-middle">
+                    <tbody>
+                    <tr th:each="dailyForecast, iter : ${dailyForecasts}" th:if="${iter.index} != 0">
+                        <td th:text="${dailyForecast.unixDateConverter(dailyForecast.getDt(), 'EEE dd')}"></td>
+                        <td><h5 style="font-weight: bolder; display: inline; padding: 0" th:text="${dailyForecast.getTemp().getMax()}+'°'"></h5>
+                            <span th:text="'/'+${dailyForecast.getTemp().getMin()}+'°'"></span></td>
+<!--
+                        <td th:text="${dailyForecast.getHumidity()}+'% Humidity'"></td>
+-->
+                        <td><img th:src="'http://openweathermap.org/img/wn/'+${dailyForecast.getWeather().get(0).getIcon()}+'@2x.png'" alt="" width="50px" height="50px">
+                        <span th:text="${dailyForecast.getWeather().get(0).getDescription()}"></span>
+                        </td>
+                        <td style="padding: 0 0 0 300px">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wind" viewBox="0 0 16 16">
+                                <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z"/>
+                            </svg>
+                            <span th:text="${dailyForecast.getWindSpeed()+' MPH'}"></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="hourlyModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div id="hourlyModalDialog" class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" text-center>
+                <h3 class="modal-title w-100" align="center">Hourly Forecast</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="hourlyForecastDiv" th:if="${location} != null" align="center">
+                <table class="table align-middle">
+                    <tr th:each="hourly, iter : ${hourlyForecast}">
+                        <td th:text="'Date: '+${hourly.unixDateConverter(hourly.getDt(), 'MM-dd-yyyy hh:mm a')}"></td>
+                        <td th:text="${hourly.getTemp()+'°'}"></td>
+                        <td th:text="${hourly.getWeather().get(0).getDescription()}"></td>
+                        <td>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wind" viewBox="0 0 16 16">
+                                <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z"/>
+                            </svg>
+                            <span th:text="${hourly.getWindSpeed()}+' MPH'"></span>
+                        </td>
+                        <td><img th:src="'http://openweathermap.org/img/wn/'+${hourly.getWeather().get(0).getIcon()}+'@2x.png'" alt="" width="50px" height="50px"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
