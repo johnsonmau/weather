@@ -38,12 +38,13 @@ public class IndexController {
         }
 
         LocationAndForecast forecastAndLoc = null;
-
         if (location != null) {
 
-            model.addAttribute("inputLocation", location);
+            if (location.trim() != "") {
+                model.addAttribute("inputLocation", location);
 
-            forecastAndLoc = forecastService.getForecastAndLocation(location);
+                forecastAndLoc = forecastService.getForecastAndLocation(location);
+            }
 
         }
         if (forecastAndLoc != null) {

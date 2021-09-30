@@ -38,8 +38,6 @@ public class ForecastServiceImpl implements ForecastService {
 
         GeocodedLocation geocodedLocation = geocode(restTemplate, loc);
 
-        LOG.info("{}",geocodedLocation);
-
         if (geocodedLocation != null) {
             if (geocodedLocation.getFeatures().size() > 0) {
 
@@ -61,8 +59,9 @@ public class ForecastServiceImpl implements ForecastService {
     public GeocodedLocation geocode(RestTemplate restTemplate, String loc){
         String apiKey = "pk.eyJ1IjoibWF1cmljZWo5NSIsImEiOiJjanh1ZnVzMHAxNHV5M2Jyb2I5bXJ3c3BoIn0.sJjb1yKUOJKwtI4Hceqk-A";
         String reqUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/"+loc+".json?access_token="+apiKey;
-        System.out.println("Geocode URL: "+reqUrl);
+        LOG.info("Geocode URL {}",reqUrl);
         ResponseEntity<GeocodedLocation> latLongReq = restTemplate.getForEntity(reqUrl, GeocodedLocation.class);
+        LOG.info("{}",latLongReq);
         return latLongReq.getBody();
     }
 
@@ -70,10 +69,10 @@ public class ForecastServiceImpl implements ForecastService {
         String apiKey = "f41fd73b971e31844dd49ea032087ae4";
         String temperatureUnit = "imperial";
         String reqUrl = "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&units="+temperatureUnit+"&appid="+apiKey;
-        System.out.println("Weather URL: "+reqUrl);
-        ResponseEntity<Forecast> latLongReq = restTemplate.getForEntity(reqUrl, Forecast.class);
-        LOG.info("WeatherData{}",latLongReq.getBody());
-        return latLongReq.getBody();
+        LOG.info("Weather URL {}",reqUrl);
+        ResponseEntity<Forecast> weatherReq = restTemplate.getForEntity(reqUrl, Forecast.class);
+        LOG.info("WeatherData{}",weatherReq.getBody());
+        return weatherReq.getBody();
     }
 
 }

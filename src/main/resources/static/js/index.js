@@ -1,8 +1,10 @@
 $(document).ready(function () {
 
+    startParticles()
+
     $( "#currentLocButton" ).click(function( event ) {
         event.preventDefault();
-        $("#searchSpinner").prop('hidden', false);
+        showSpinner()
         getLocation();
     });
 
@@ -21,33 +23,73 @@ $(document).ready(function () {
     $( ".recentLoc" ).click(function( event ) {
         event.preventDefault();
         $(".recentLoc").prop('disabled', true);
-        $("#searchSpinner").prop('hidden', false);
+        showSpinner();
         window.location.href = "/home?location=" + $(this).text()
     });
 
-    $( "#getWeatherLink" ).click(function( event ) {
-        $("#noInputErr").prop('hidden', true);
-        event.preventDefault();
-        if ($('#location').val().trim() == ''){
-            $("#noInputErr").prop('hidden', false);
-        } else {
-            $("#searchSpinner").prop('hidden', false);
-            $("#currentLocButton").prop('disabled', true);
-            $("#getWeatherLink").prop('disabled', true);
-            window.location.href = "/home?location=" + $('#location').val()
+    $('#location').keypress(function (e) {
+        if (e.which == 13) {
+            if ($('#location').val() == '') processInputLocation(e)
+            else {
+                showSpinner()
+            }
         }
+    });
+
+    $( "#getWeatherLink" ).click(function( event ) {
+        processInputLocation(event)
     });
 
 })
 
+function processInputLocation(event){
+    event.preventDefault();
+    if ($('#location').val().trim() == ''){
+        document.getElementById("location").className = document.getElementById("location").className + " customError";
+    } else {
+        document.getElementById("location").className = document.getElementById("location").className
+            .replace(" customError", "");
+        showSpinner()
+        $("#currentLocButton").prop('disabled', true);
+        $("#getWeatherLink").prop('disabled', true);
+        window.location.href = "/home?location=" + $('#location').val()
+    }
+}
+
+function showSpinner() {
+    $("#searchSpinner").prop('hidden', false);
+}
+function hideSpinner() {
+    $("#searchSpinner").prop('hidden', true);
+}
+
+function startParticles() {
+    Particles.init({
+        selector: '.background',
+        maxParticles: 650,
+        color: '#81B29A'
+    });
+}
+
+
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
+        navigator.geolocation.getCurrentPosition(showPosition, positionFailed);
     } else {
-        console.log("Geolocation is not supported by this browser.");
+        alert("Sorry, could not get current location.")
     }
 }
 
 function showPosition(position) {
     window.location.href = "/home?location="+position.coords.longitude+","+position.coords.latitude;
+}
+
+function positionFailed(error) {
+    hideSpinner()
+    if (error.message == "User denied Geolocation"){
+        alert("You must enable location access for this application to get your current location." +
+            " If you wish not to, you may enter a location manually.")
+    } else {
+        alert("Sorry, could not get current location.")
+    }
 }

@@ -7,6 +7,11 @@
 #country {
     display: inline;
 }
+#errorTitle404{
+    font-size: 200px;
+    text-shadow: -3px 0 #81B29A, 0 3px #81B29A, 3px 0 #81B29A, 0 -3px #81B29A;
+    font-weight: bolder;
+}
 
 .card, #currentIcon {
     margin: 0 auto; /* Added */
@@ -21,33 +26,46 @@ table {
 td {
     text-align: center!important;
 }
-#dailyModalDialog{
+#dailyModalDialog, #hourlyModalDialog{
     position: relative;
     display: table; /* This is important */
-    overflow-x: auto;
-    width: auto;
-    min-width: 300px;
-}
-#hourlyModalDialog{
-    position: relative;
+    /*
     overflow-y: initial!important;
-    overflow-x: auto;
+    */
     width: auto;
     min-width: 400px;
-    min-height: 100px;
+}
+#hourlyModalContent{
+    height: 500px;
+}
+html, body {
+    margin: 0;
+    padding: 0;
 }
 body {
-    color: #F4F1DE;
-    background-color: #3D405B;
     font-family: 'Lato', sans-serif;
+}
+.background {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    z-index: 0;
 }
 #currentWeatherCard {
     color: #3D405B;
-    background-color: #F2CC8F;
     border: #E07A5F 2px dashed;
 }
 #currentWeatherCard:hover {
-    border: #81B29A 2px dashed;
+    border: #81B29A 3px dashed;
+}
+#currentTime{
+    color: #81B29A;
+    font-weight: bold;
+}
+#mainDiv {
+    position:relative;
+    z-index:9999;
 }
 #mainTitle{
     font-family: 'Pacifico', cursive;
@@ -59,7 +77,17 @@ body {
     font-size: 32px;
     color: #81B29A
 }
+.modal-title{
+    font-family: 'Pacifico', cursive;
+    color: #E07A5F;
+
+}
+.modal-title:hover{
+    color: #81B29A
+
+}
 .myLink:hover{
+    font-weight: bolder;
     cursor: pointer;
     color: #81B29A;
 }
@@ -79,4 +107,7 @@ body {
 }
 #currentLocButton {
     color: #E07A5F;
+}
+.customError {
+    border:1px solid red;
 }
