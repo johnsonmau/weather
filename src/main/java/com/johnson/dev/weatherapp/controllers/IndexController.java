@@ -53,6 +53,11 @@ public class IndexController {
             List<Feature> features = geocodedLocation.getFeatures();
             Feature feature = features.get(0);
             String placeName = feature.getPlaceName();
+            Double longitude = feature.getCoordinates().get(0);
+            Double latitude = feature.getCoordinates().get(1);
+
+            model.addAttribute("longitude", longitude);
+            model.addAttribute("latitude", latitude);
 
             String cookieName = "location" + locationSize;
             String cookieValue = placeName
