@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
 
 #location {
     display: inline;
@@ -8,7 +9,7 @@
     display: inline;
 }
 #errorTitle404{
-    font-size: 200px;
+    font-size: 85px;
     text-shadow: -3px 0 #81B29A, 0 3px #81B29A, 3px 0 #81B29A, 0 -3px #81B29A;
     font-weight: bolder;
 }
@@ -26,7 +27,7 @@ table {
 td {
     text-align: center!important;
 }
-#dailyModalDialog, #hourlyModalDialog{
+#dailyDialog, #hourlyDialog{
     position: relative;
     display: table; /* This is important */
     /*
@@ -35,12 +36,14 @@ td {
     width: auto;
     min-width: 400px;
 }
-#hourlyModalContent{
-    height: 500px;
+#hourlyForecastDiv{
+    height: 470px;
 }
 html, body {
-    margin: 0;
-    padding: 0;
+    padding: 0!important;
+    margin: 0!important;
+    height: 100%!important;
+    width: 100%!important;
 }
 body {
     font-family: 'Lato', sans-serif;
@@ -68,23 +71,13 @@ body {
     z-index:9999;
 }
 #mainTitle{
-    font-family: 'Pacifico', cursive;
-    font-size: 32px;
+    font-family: 'Alata', sans-serif;
+    font-size: 50px;
     color: #E07A5F;
 }
 #mainTitle:hover{
     cursor: pointer;
-    font-size: 32px;
     color: #81B29A
-}
-.modal-title{
-    font-family: 'Pacifico', cursive;
-    color: #E07A5F;
-
-}
-.modal-title:hover{
-    color: #81B29A
-
 }
 .myLink:hover{
     font-weight: bolder;
@@ -97,9 +90,6 @@ body {
 .alert {
     width:30%;
 }
-.modal-title {
-   color: #3D405B;
-}
 #currentLocButton:hover {
     color: #81B29A;
     cursor: pointer;
@@ -110,4 +100,19 @@ body {
 }
 .customError {
     border:1px solid red;
+}
+#map {
+    padding: 0px 20% 0px 20%;
+    height: 100%;
+    width: 100%;
+    position:relative;
+    z-index:9999;
+}
+#dailyForecastTable, #hourlyForecastTable {
+    border:  1px dotted #81B29A;
+}
+.componentTitle {
+    font-weight: bolder;
+    color: #E07A5F;
+    font-family: 'Alata', sans-serif;
 }
