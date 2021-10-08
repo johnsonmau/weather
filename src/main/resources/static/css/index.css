@@ -24,6 +24,7 @@
         text-align: center;
     }
     #hourlyForecastTable, #dailyForecastTable {
+        table-layout: fixed;
     }
 
 }
