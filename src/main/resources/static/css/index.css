@@ -2,6 +2,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
 
+@media only screen and (max-width: 620px) {
+    /* For mobile phones: */
+    #mainTitle {
+        font-size: 40px!important;
+    }
+    #currentWeatherCard {
+        width: 90%;
+    }
+    #map {
+        padding: 0% 0% 40% 0%;
+    }
+
+    #tableRow {
+        display:flex;
+        flex-wrap:wrap; /* allow to wrap on multiple rows */
+    }
+    td{
+        padding: 0;
+        width: fit-content;
+        text-align: center;
+    }
+    #hourlyForecastTable, #dailyForecastTable {
+    }
+
+}
+
+@media only screen and (min-width: 621px) {
+    #currentWeatherCard {
+        width: 30rem;
+    }
+    #map {
+        padding: 5px 20% 5px 20%;
+    }
+/*    #dailyDialog, #hourlyDialog{
+        position: relative;
+        display: table; !* This is important *!
+        !*
+        overflow-y: initial!important;
+        *!
+        width: auto;
+        min-width: 400px;
+    }*/
+}
+
 #location {
     display: inline;
 }
@@ -19,23 +63,14 @@
     float: none; /* Added */
     margin-bottom: 10px; /* Added */
 }
-table {
+/*table {
     table-layout: auto!important;
     width: 180px!important;
     white-space: nowrap!important;
 }
 td {
     text-align: center!important;
-}
-#dailyDialog, #hourlyDialog{
-    position: relative;
-    display: table; /* This is important */
-    /*
-    overflow-y: initial!important;
-    */
-    width: auto;
-    min-width: 400px;
-}
+}*/
 #hourlyForecastDiv{
     height: 470px;
 }
@@ -102,7 +137,6 @@ body {
     border:1px solid red;
 }
 #map {
-    padding: 0px 20% 0px 20%;
     height: 100%;
     width: 100%;
     position:relative;

@@ -5,6 +5,7 @@ import com.johnson.dev.weatherapp.models.GeocodedLocation;
 import com.johnson.dev.weatherapp.models.LocationAndForecast;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,20 +14,21 @@ import org.springframework.web.client.RestTemplate;
 public class ForecastServiceImpl implements ForecastService {
 
     private static final Logger LOG = LoggerFactory.getLogger(ForecastServiceImpl.class);
+    @Autowired
+    private GeocoderService geocoderService;
+    private RestTemplate restTemplate = new RestTemplate();
 
     @Override
     public Forecast getForecast(String loc) {
 
-        RestTemplate restTemplate = new RestTemplate();
-
-        GeocodedLocation geocodedLocation = geocode(restTemplate, loc);
+        GeocodedLocation geocodedLocation = geocoderService.geocode(loc);
 
         LOG.info("{}",geocodedLocation);
 
         String longitude = geocodedLocation.getFeatures().get(0).getCoordinates().get(0).toString();
         String latitude = geocodedLocation.getFeatures().get(0).getCoordinates().get(1).toString();
 
-        return getWeather(restTemplate, latitude, longitude);
+        return getWeather(latitude, longitude);
     }
 
     @Override
@@ -34,9 +36,7 @@ public class ForecastServiceImpl implements ForecastService {
 
         LOG.info("Entered Location: {}",loc);
 
-        RestTemplate restTemplate = new RestTemplate();
-
-        GeocodedLocation geocodedLocation = geocode(restTemplate, loc);
+        GeocodedLocation geocodedLocation = geocoderService.geocode(loc);
 
         if (geocodedLocation != null) {
             if (geocodedLocation.getFeatures().size() > 0) {
@@ -44,7 +44,7 @@ public class ForecastServiceImpl implements ForecastService {
                 String longitude = geocodedLocation.getFeatures().get(0).getCoordinates().get(0).toString();
                 String latitude = geocodedLocation.getFeatures().get(0).getCoordinates().get(1).toString();
 
-                Forecast forecast = getWeather(restTemplate, latitude, longitude);
+                Forecast forecast = getWeather(latitude, longitude);
 
                 if (forecast != null) {
                     return new LocationAndForecast(geocodedLocation, forecast);
@@ -56,16 +56,7 @@ public class ForecastServiceImpl implements ForecastService {
         return null;
     }
 
-    public GeocodedLocation geocode(RestTemplate restTemplate, String loc){
-        String apiKey = "pk.eyJ1IjoibWF1cmljZWo5NSIsImEiOiJjanh1ZnVzMHAxNHV5M2Jyb2I5bXJ3c3BoIn0.sJjb1yKUOJKwtI4Hceqk-A";
-        String reqUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/"+loc+".json?access_token="+apiKey;
-        LOG.info("Geocode URL {}",reqUrl);
-        ResponseEntity<GeocodedLocation> latLongReq = restTemplate.getForEntity(reqUrl, GeocodedLocation.class);
-        LOG.info("{}",latLongReq);
-        return latLongReq.getBody();
-    }
-
-    public Forecast getWeather(RestTemplate restTemplate, String lat, String lon){
+    private Forecast getWeather(String lat, String lon){
         String apiKey = "f41fd73b971e31844dd49ea032087ae4";
         String temperatureUnit = "imperial";
         String reqUrl = "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&units="+temperatureUnit+"&appid="+apiKey;
