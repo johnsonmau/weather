@@ -26,9 +26,6 @@
     #hourlyForecastTable, #dailyForecastTable {
         table-layout: fixed;
     }
-    td {
-        white-space: nowrap;
-    }
 }
 
 @media only screen and (min-width: 621px) {
@@ -56,6 +53,7 @@
     display: inline;
 }
 #errorTitle404{
+    font-family: 'Patua One', cursive;
     font-size: 85px;
     text-shadow: -3px 0 #2D82B7, 0 3px #2D82B7, 3px 0 #2D82B7, 0 -3px #2D82B7;
     font-weight: bolder;
@@ -76,6 +74,7 @@ td {
 }*/
 #hourlyForecastDiv{
     height: 470px;
+    border-bottom: 1px dotted #2D82B7;
 }
 html, body {
     padding: 0!important;
