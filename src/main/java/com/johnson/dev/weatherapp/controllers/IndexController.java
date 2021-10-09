@@ -115,9 +115,11 @@ public class IndexController {
             else j = 3;
 
             for (int i = existingCookies.length - 1; i >= existingCookies.length - j; i--) {
-                String recentLocNameModified = existingCookies[i].getValue()
-                        .replaceAll("commaspace", ", ").replace("space", " ");
-                lastThreeLocNames.add(recentLocNameModified);
+                if (existingCookies[i].getName().contains("location")) {
+                    String recentLocNameModified = existingCookies[i].getValue()
+                            .replaceAll("commaspace", ", ").replace("space", " ");
+                    lastThreeLocNames.add(recentLocNameModified);
+                }
             }
         }
         return lastThreeLocNames;
