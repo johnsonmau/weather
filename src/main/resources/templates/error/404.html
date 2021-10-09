@@ -16,6 +16,14 @@
     <span id="errorTitle404">404 - Page not found</span>
 </div>
 
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    var latitude = /*[[${latitude}]]*/ 'default';
+    var longitude = /*[[${longitude}]]*/ 'default';
+
+    /*]]>*/
+</script>
 <canvas class="background"></canvas>
 <script src="/js/particles.js"></script>
 </body>
