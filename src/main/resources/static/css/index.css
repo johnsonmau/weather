@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
 
 @media only screen and (max-width: 620px) {
     /* For mobile phones: */
@@ -11,7 +11,7 @@
         width: 90%;
     }
     #map {
-        padding: 0% 0% 40% 0%;
+        padding: 0% 3% 40% 3%;
     }
 
     #tableRow {
@@ -26,7 +26,9 @@
     #hourlyForecastTable, #dailyForecastTable {
         table-layout: fixed;
     }
-
+    td {
+        white-space: nowrap;
+    }
 }
 
 @media only screen and (min-width: 621px) {
@@ -34,7 +36,7 @@
         width: 30rem;
     }
     #map {
-        padding: 5px 20% 5px 20%;
+        padding: 5px 10% 5px 10%;
     }
 /*    #dailyDialog, #hourlyDialog{
         position: relative;
@@ -55,7 +57,7 @@
 }
 #errorTitle404{
     font-size: 85px;
-    text-shadow: -3px 0 #81B29A, 0 3px #81B29A, 3px 0 #81B29A, 0 -3px #81B29A;
+    text-shadow: -3px 0 #2D82B7, 0 3px #2D82B7, 3px 0 #2D82B7, 0 -3px #2D82B7;
     font-weight: bolder;
 }
 
@@ -93,13 +95,13 @@ body {
 }
 #currentWeatherCard {
     color: #3D405B;
-    border: #E07A5F 2px dashed;
+    border: #3A506B 2px dashed;
 }
 #currentWeatherCard:hover {
-    border: #81B29A 3px dashed;
+    border: #2D82B7 3px dashed;
 }
 #currentTime{
-    color: #81B29A;
+    color: #2D82B7;
     font-weight: bold;
 }
 #mainDiv {
@@ -107,32 +109,32 @@ body {
     z-index:9999;
 }
 #mainTitle{
-    font-family: 'Alata', sans-serif;
+    font-family: 'Patua One', cursive;
     font-size: 50px;
-    color: #E07A5F;
+    color: #3A506B;
 }
 #mainTitle:hover{
     cursor: pointer;
-    color: #81B29A
+    color: #2D82B7
 }
 .myLink:hover{
     font-weight: bolder;
     cursor: pointer;
-    color: #81B29A;
+    color: #2D82B7;
 }
 .myLink {
-    color: #E07A5F;
+    color: #3A506B;
 }
 .alert {
     width:30%;
 }
 #currentLocButton:hover {
-    color: #81B29A;
+    color: #2D82B7;
     cursor: pointer;
     text-decoration: underline;
 }
 #currentLocButton {
-    color: #E07A5F;
+    color: #3A506B;
 }
 .customError {
     border:1px solid red;
@@ -144,10 +146,10 @@ body {
     z-index:9999;
 }
 #dailyForecastTable, #hourlyForecastTable {
-    border:  1px dotted #81B29A;
+    border:  1px dotted #2D82B7;
 }
 .componentTitle {
     font-weight: bolder;
-    color: #E07A5F;
-    font-family: 'Alata', sans-serif;
+    color: #3A506B;
+    font-family: 'Patua One', cursive;
 }

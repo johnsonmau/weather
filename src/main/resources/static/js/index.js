@@ -88,7 +88,7 @@ function startParticles() {
     Particles.init({
         selector: '.background',
         maxParticles: 600,
-        color: '#81B29A'
+        color: '#2D82B7'
     });
 }
 

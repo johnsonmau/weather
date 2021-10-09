@@ -23,7 +23,7 @@ public class ForecastServiceImpl implements ForecastService {
 
         GeocodedLocation geocodedLocation = geocoderService.geocode(loc);
 
-        LOG.info("{}",geocodedLocation);
+        LOG.info("geocoded location successfully");
 
         String longitude = geocodedLocation.getFeatures().get(0).getCoordinates().get(0).toString();
         String latitude = geocodedLocation.getFeatures().get(0).getCoordinates().get(1).toString();
@@ -62,7 +62,7 @@ public class ForecastServiceImpl implements ForecastService {
         String reqUrl = "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&units="+temperatureUnit+"&appid="+apiKey;
         LOG.info("Weather URL {}",reqUrl);
         ResponseEntity<Forecast> weatherReq = restTemplate.getForEntity(reqUrl, Forecast.class);
-        LOG.info("WeatherData{}",weatherReq.getBody());
+        LOG.info("Successfully retrieved weather data");
         return weatherReq.getBody();
     }
 

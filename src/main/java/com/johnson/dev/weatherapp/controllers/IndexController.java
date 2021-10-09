@@ -29,7 +29,6 @@ public class IndexController {
     public String getIndex(HttpServletRequest request, HttpServletResponse response,
                            @RequestParam(required = false) String location, Model model) {
 
-
         int locationSize = getRecentLocations(request).size();
 
         List<String> lastThreeLocNames = getRecentLocations(request);
