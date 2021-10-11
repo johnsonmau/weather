@@ -23,8 +23,6 @@ public class ForecastServiceImpl implements ForecastService {
 
         GeocodedLocation geocodedLocation = geocoderService.geocode(loc);
 
-        LOG.info("geocoded location successfully");
-
         String longitude = geocodedLocation.getFeatures().get(0).getCoordinates().get(0).toString();
         String latitude = geocodedLocation.getFeatures().get(0).getCoordinates().get(1).toString();
 
