@@ -19,7 +19,7 @@ public class GeocoderServiceImpl implements GeocoderService {
         String reqUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/"+loc+".json?access_token="+apiKey;
         LOG.info("Geocode URL {}",reqUrl);
         ResponseEntity<GeocodedLocation> latLongReq = restTemplate.getForEntity(reqUrl, GeocodedLocation.class);
-        LOG.info("{}",latLongReq);
+        LOG.info("geocoded location successfully");
         return latLongReq.getBody();
     }
 
