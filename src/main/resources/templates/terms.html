@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--
+Created by Maurice Johnson - 2021
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<script data-ad-client="ca-pub-6985265472004681" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVV11K86LR"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-HVV11K86LR');
+    </script>
+    <meta charset="utf-8"/>
+    <meta name="description" content="Free weather now">
+    <meta name="keywords" content="eazyweather,eazy weather,easyweather,weather,temperature,snow,rain,sun,cloudy,wind,storms">
+    <meta name="author" content="Maurice Johnson">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <title>Terms and Conditions</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/title.css">
+    <script src="js/index.js"></script>
+</head>
+<body>
+<div id="mainDiv">
+<h1 align="center" id="mainTitle">eazyweather</h1><br>
+<div class="container">
+    <br>
+    <h2 align="center" class="componentTitle" style="text-decoration: underline">Terms and Conditions</h2>
+    <small>Last updated: January 2020</small>
+    <br><br>
+    <p>Please read these Terms and Conditions before using https://www.eazyweather.com.
+        Your access to and use of the Service is conditioned on your acceptance of and compliance with
+        these Terms. These Terms apply to all visitors, users and others who access or use the Service.
+        By accessing or using the Service you agree to be bound by these Terms. If you disagree
+        with any part of the terms then you may not access the Service.
+        Purchases</p>
+    <h4 class="componentTitle" style="display: inline;">Links To Other Web Sites</h4>
+    <p>Our Service may contain links to third-party web sites or services that are not owned or controlled
+        by Eazyweather.
+        Eazyweather has no control over, and assumes no responsibility for, the content,
+        privacy policies, or practices of any third party web sites or services. You further acknowledge and
+        agree that Eazyweather shall not be responsible or liable, directly or indirectly, for any
+        damage or loss caused or alleged to be caused by or in connection with use of or reliance on any
+        such content, goods or services available on or through any such web sites or services.</p>
+    <h4 class="componentTitle" style="display: inline;">Changes</h4>
+    <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a
+        revision is made we will try to provide at least 30 days' notice prior to any new terms
+        taking effect. What constitutes a material change will be determined at our sole discretion.</p>
+    <h4 class="componentTitle" style="display: inline;">Contact Us</h4>
+    <p> If you have any questions about these Terms, please contact us.</p>
+</div>
+
+<footer class="container-fluid text-center">
+    <br><br>
+    <a class="myLink" href="/terms">Terms and Conditions</a><span> | </span><a class="myLink" href="/privacy">Privacy Policy</a>
+</footer>
+</div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    var latitude = /*[[${latitude}]]*/ 'default';
+    var longitude = /*[[${longitude}]]*/ 'default';
+
+    /*]]>*/
+</script>
+<canvas class="background"></canvas>
+<script src="/js/particles.js"></script>
+</body>
+</html>
