@@ -11,7 +11,7 @@
         width: 90%;
     }
     #map {
-        padding: 0% 3% 40% 3%;
+        padding: 0% 3% 60% 3%;
     }
 
     #tableRow {
@@ -151,4 +151,8 @@ body {
     font-weight: bolder;
     color: #3A506B;
     font-family: 'Patua One', cursive;
+}
+#getWeatherLink{
+    word-wrap:break-word;
+    display: block;
 }

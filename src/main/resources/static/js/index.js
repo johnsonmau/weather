@@ -1,9 +1,11 @@
+/**
+ * created by Maurice Johnson - 2021
+ */
 $(document).ready(function () {
 
     showOrHideMap()
 
     startParticles()
-
 
     $( "#currentLocButton" ).click(function( event ) {
         event.preventDefault();
@@ -49,6 +51,7 @@ $(document).ready(function () {
 
 function openCollapseAndChangeButtonText(collapseName, buttonElement, buttonText){
     $("#"+collapseName).on('shown.bs.collapse', function(){
+        this.scrollIntoView();
         changeButtonText(buttonElement, buttonText)
     });
 }

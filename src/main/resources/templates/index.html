@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<!--
+Created by Maurice Johnson
+-->
 <html xmlns:th="http://www.thymeleaf.org">
 <script data-ad-client="ca-pub-6985265472004681" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <head>
@@ -32,7 +35,7 @@
 <br>
 <div id="mainDiv" align="center">
     <h6 style="color: #3A506B; font-weight: bolder">welcome to</h6>
-    <h1 id="mainTitle">eazyweather.com</h1><br>
+    <h1 id="mainTitle">eazyweather</h1><br>
     <p>Quickly get the weather in your area or anywhere you'd like.<br>You can easily choose between a current, hourly,
         or daily forecast</p>
 
@@ -225,16 +228,10 @@
 <h3 id="mapTitle" align="center" class="componentTitle">Radar</h3>
 <div id="map"></div>
 
-<footer style="bottom: 0">
-    <small style="left: 5px; position: absolute; color: lightgray" >Created by Maurice Johnson</small>
-    <small style="right: 5px; position: absolute; color: lightgray">EazyWeather - 2021</small>
-</footer>
 <script th:inline="javascript">
     /*<![CDATA[*/
-
     var latitude = /*[[${latitude}]]*/ 'default';
     var longitude = /*[[${longitude}]]*/ 'default';
-
     /*]]>*/
 </script>
 <canvas class="background"></canvas>
