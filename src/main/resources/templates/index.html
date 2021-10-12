@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-Created by Maurice Johnson
+Created by Maurice Johnson - 2021
 -->
 <html xmlns:th="http://www.thymeleaf.org">
 <script data-ad-client="ca-pub-6985265472004681" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -34,11 +34,10 @@ Created by Maurice Johnson
 <body>
 <br>
 <div id="mainDiv" align="center">
-    <h6 style="color: #3A506B; font-weight: bolder">welcome to</h6>
-    <h1 id="mainTitle">eazyweather</h1><br>
-    <p>Quickly get the weather in your area or anywhere you'd like.<br>You can easily choose between a current, hourly,
+    <h1 id="mainTitle">eazyweather</h1>
+    <p style="font-weight: lighter; font-size: 14px">Quickly get the weather in your area or anywhere you'd like.<br>You can easily choose between a current, hourly,
         or daily forecast</p>
-
+<br>
     <div>
         <small style="text-decoration: underline dotted; font-weight: bolder"
                th:if="${lastThreeLocs != null && lastThreeLocs.size() > 0}" type="button" id="showRecentLoc"
@@ -227,6 +226,11 @@ Created by Maurice Johnson
 
 <h3 id="mapTitle" align="center" class="componentTitle">Radar</h3>
 <div id="map"></div>
+
+<footer id="termsPpFooter" class="container-fluid text-center">
+    <br><br>
+    <a class="myLink" href="/terms">Terms and Conditions</a><span> | </span><a class="myLink" href="/privacy">Privacy Policy</a>
+</footer>
 
 <script th:inline="javascript">
     /*<![CDATA[*/
