@@ -20,6 +20,16 @@ public class IndexController {
     @Autowired
     private ForecastService forecastService;
 
+    @GetMapping("/privacy")
+    public String getPP(){
+        return "privacy";
+    }
+
+    @GetMapping("/terms")
+    public String getTerms(){
+        return "terms";
+    }
+
     @GetMapping("/")
     public String getIndex(){
         return "redirect:/home";
