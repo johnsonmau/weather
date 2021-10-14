@@ -1,53 +1,62 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Pacifico&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Calistoga&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
-
-@media only screen and (max-width: 620px) {
+@media only screen and (max-width: 700px) {
     /* For mobile phones: */
     #mainTitle {
         font-size: 45px!important;
     }
-    #currentWeatherCard {
-        width: 90%;
-    }
+
     #map {
         padding: 0% 3% 60% 3%;
     }
 
-    #tableRow {
-        display:flex;
-        flex-wrap:wrap; /* allow to wrap on multiple rows */
+    #currentWeatherCard {
+        width: 100%;
+        color: #3D405B;
+        border: #3A506B 2px dashed;
     }
-    td{
-        padding: 0;
-        width: fit-content;
+    #dailyDivContent, #hourlyDivContent {
+        width: 100%;
+    }
+    .row {
+        white-space: nowrap;
         text-align: center;
+        padding-bottom: 40px;
+        font-size: 16px;
     }
-    #hourlyForecastTable, #dailyForecastTable {
-        table-layout: fixed;
-    }
+
 }
 
-@media only screen and (min-width: 621px) {
-    #currentWeatherCard {
-        width: 30rem;
-    }
+@media only screen and (min-width: 700px) {
     #map {
         padding: 5px 10% 5px 10%;
     }
-/*    #dailyDialog, #hourlyDialog{
-        position: relative;
-        display: table; !* This is important *!
-        !*
-        overflow-y: initial!important;
-        *!
-        width: auto;
-        min-width: 400px;
-    }*/
+    #currentWeatherCard {
+        width: 80%;
+        color: #3D405B;
+        border: #3A506B 2px dashed;
+    }
+    #dailyDivContent, #hourlyDivContent {
+        width: 85%;
+    }
 }
 
+@media only screen and (min-width: 900px) {
+    #currentWeatherCard {
+        width: 60%;
+        color: #3D405B;
+        border: #3A506B 2px dashed;
+    }
+    #dailyDivContent, #hourlyDivContent {
+        width: 100%;
+    }
+}
+#fullLocation{
+    overflow: hidden;
+    white-space: normal;
+}
 #location {
     display: inline;
 }
@@ -74,10 +83,6 @@
 td {
     text-align: center!important;
 }*/
-#hourlyForecastDiv{
-    height: 470px;
-    border-bottom: 1px dotted #2D82B7;
-}
 html, body {
     padding: 0!important;
     margin: 0!important;
@@ -95,12 +100,8 @@ body {
     left: 0;
     z-index: 0;
 }
-#currentWeatherCard {
-    color: #3D405B;
-    border: #3A506B 2px dashed;
-}
 #currentWeatherCard:hover {
-    border: #2D82B7 3px dashed;
+    border: #2D82B7 dashed;
 }
 #currentTime{
     color: #2D82B7;
@@ -110,8 +111,12 @@ body {
     position:relative;
     z-index:9999;
 }
+#mainDiv{
+    width: 100%;
+}
 #mainTitle{
-    font-family: 'Carter One', cursive;
+    text-decoration: underline;
+    font-family: 'Calistoga', cursive;
     font-size: 80px;
     color: #3A506B;
 }
@@ -147,15 +152,23 @@ body {
     position:relative;
     z-index:9999;
 }
-#dailyForecastTable, #hourlyForecastTable {
-    border:  1px dotted #2D82B7;
-}
+
 .componentTitle {
     font-weight: bolder;
     color: #3A506B;
-    font-family: 'Patua One', cursive;
+    font-family: 'Calistoga', cursive;
 }
 #getWeatherLink{
     word-wrap:break-word;
     display: block;
+}
+#hourlyForecastDiv, #dailyForecastDiv{
+    height: 350px;
+    width: 100%;
+}
+.mainCardTableColumn {
+    margin: 0 auto;
+}
+#mainCardBody{
+    margin: 0 auto;
 }

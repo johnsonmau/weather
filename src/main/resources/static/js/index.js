@@ -3,6 +3,9 @@
  */
 $(document).ready(function () {
 
+    $(".bi-arrow-up-circle").attr("display", "none");
+    $('.dailyDetailExtraCard').attr("display", "none")
+
     showOrHideMap()
 
     startParticles()
@@ -17,15 +20,31 @@ $(document).ready(function () {
         event.preventDefault();
         window.location.href ="/"
     });
+    $( ".dailyRowClass" ).click(function( event ) {
+        event.preventDefault();
+        rowId = this.id
+        rowIdNum = rowId.substring(rowId.length-1)
+        rowIdDetailsSelector = "#dailyDetailRow"+rowIdNum
+        rowIdDetailsExtraSelector = "#dailyDetailRowExtra"+rowIdNum
+        downArrowSelector = "#downArrow"+rowIdNum
+        upArrowSelector = "#upArrow"+rowIdNum
+
+        if ($(rowIdDetailsSelector).is(":hidden")){
+            $(downArrowSelector).attr("display", "none");
+            $(upArrowSelector).attr("display", "show");
+            $(rowIdDetailsSelector).prop('hidden', false);
+            $(rowIdDetailsExtraSelector).prop('hidden', false);
+        } else {
+            $(downArrowSelector).attr("display", "show");
+            $(upArrowSelector).attr("display", "none");
+            $(rowIdDetailsSelector).prop('hidden', true);
+            $(rowIdDetailsExtraSelector).prop('hidden', true);
+        }
+    });
 
     openCollapseAndChangeButtonText("recentLocCollapse", "showRecentLoc", "Hide recently searched locations")
     closeCollapseAndChangeButtonText("recentLocCollapse", "showRecentLoc", "Show recently searched locations")
 
-    openCollapseAndChangeButtonText("sevenDayDivCollapse", "toggleDailyForecast", "Hide 7 Day Forecast")
-    closeCollapseAndChangeButtonText("sevenDayDivCollapse", "toggleDailyForecast", "Show 7 Day Forecast")
-
-    openCollapseAndChangeButtonText("hourlyDivCollapse", "toggleHourlyForecast", "Hide Hourly Forecast")
-    closeCollapseAndChangeButtonText("hourlyDivCollapse", "toggleHourlyForecast", "Show Hourly Forecast")
 
     $( ".recentLoc" ).click(function( event ) {
         event.preventDefault();
@@ -51,7 +70,6 @@ $(document).ready(function () {
 
 function openCollapseAndChangeButtonText(collapseName, buttonElement, buttonText){
     $("#"+collapseName).on('shown.bs.collapse', function(){
-        this.scrollIntoView();
         changeButtonText(buttonElement, buttonText)
     });
 }
@@ -90,8 +108,9 @@ function hideSpinner() {
 function startParticles() {
     Particles.init({
         selector: '.background',
-        maxParticles: 600,
-        color: '#2D82B7'
+        maxParticles: 400,
+        color: '#2D82B7',
+        speed: 0.2
     });
 }
 

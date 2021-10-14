@@ -4,45 +4,52 @@ Created by Maurice Johnson - 2021
 -->
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <script data-ad-client="ca-pub-6985265472004681" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script async data-ad-client="ca-pub-6985265472004681"
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVV11K86LR"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'G-HVV11K86LR');
     </script>
     <meta charset="utf-8"/>
-    <meta name="description" content="Free weather now">
-    <meta name="keywords" content="eazyweather,eazy weather,easyweather,weather,temperature,snow,rain,sun,cloudy,wind,storms">
-    <meta name="author" content="Maurice Johnson">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="HandheldFriendly" content="true">
+    <meta content="Free weather now" name="description">
+    <meta content="eazyweather,eazy weather,easyweather,weather,temperature,snow,rain,sun,cloudy,wind,storms"
+          name="keywords">
+    <meta content="Maurice Johnson" name="author">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta content="true" name="HandheldFriendly">
     <title>EazyWeather</title>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/title.css">
-    <link rel="stylesheet" href="https://js.arcgis.com/4.21/esri/themes/light/main.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+    <link href="css/title.css" rel="stylesheet">
+    <link href="https://js.arcgis.com/4.21/esri/themes/light/main.css" rel="stylesheet">
     <script src="https://js.arcgis.com/4.21/"></script>
     <script src="js/index.js"></script>
 </head>
 <body>
 <br>
-<div id="mainDiv" align="center">
+<div align="center" id="mainDiv" class="container-fluid">
     <h1 id="mainTitle">eazyweather</h1>
-    <p style="font-weight: lighter; font-size: 14px">Quickly get the weather in your area or anywhere you'd like.<br>You can easily choose between a current, hourly,
+    <p style="font-weight: lighter; font-size: 14px">Quickly get the weather in your area or anywhere you'd like.<br>You
+        can easily choose between a current, hourly,
         or daily forecast</p>
-<br>
+    <br>
     <div>
-        <small style="text-decoration: underline dotted; font-weight: bolder"
-               th:if="${lastThreeLocs != null && lastThreeLocs.size() > 0}" type="button" id="showRecentLoc"
-               class="myLink"
-               data-bs-toggle="collapse" data-bs-target="#recentLocCollapse">Show recently searched locations
+        <small class="myLink"
+               data-bs-target="#recentLocCollapse" data-bs-toggle="collapse" id="showRecentLoc"
+               style="text-decoration: underline dotted; font-weight: bolder"
+               th:if="${lastThreeLocs != null && lastThreeLocs.size() > 0}" type="button">Show recently searched locations
         </small>
         <div class="collapse" id="recentLocCollapse" th:each="loc, iter : ${lastThreeLocs}"
              th:if="${lastThreeLocs != null && lastThreeLocs.size() > 0}">
@@ -52,18 +59,18 @@ Created by Maurice Johnson - 2021
     </div>
     <br th:if="${lastThreeLocs != null && lastThreeLocs.size() > 0}">
     <form action="/home" method="get">
-        <svg data-toggle="tooltip" data-placement="left" title="Tooltip on left"
-             alt="Get Current Location" id="currentLocButton" xmlns="http://www.w3.org/2000/svg" width="16"
-             height="16" fill="currentColor" class="bi bi-pin-map-fill" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1
-                0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z"/>
-            <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"/>
+        <svg alt="Get Current Location" class="bi bi-pin-map-fill" data-placement="left"
+             data-toggle="tooltip" fill="currentColor" height="16" id="currentLocButton"
+             title="Tooltip on left" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1
+                0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z" fill-rule="evenodd"/>
+            <path d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z" fill-rule="evenodd"/>
         </svg>
-        <input class="form-control" th:value="${inputLocation} == null ? '' : ${inputLocation}" style="width: 345px;"
-               placeholder="Enter an Address, City, State or Postal Code" id="location" name="location" type="text">
-        <small id="getWeatherLink" class="myLink">Get Weather
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                 class="bi bi-cloud-sun-fill" viewBox="0 0 16 16">
+        <input class="form-control" id="location" name="location"
+               placeholder="Enter an Address, City, State or Postal Code" style="width: 345px;" th:value="${inputLocation} == null ? '' : ${inputLocation}" type="text">
+        <small class="myLink" id="getWeatherLink">Get Weather
+            <svg class="bi bi-cloud-sun-fill" fill="currentColor" height="16" viewBox="0 0 16 16"
+                 width="16" xmlns="http://www.w3.org/2000/svg">
                 <path d="M11.473 11a4.5 4.5 0 0 0-8.72-.99A3 3 0 0 0 3 16h8.5a2.5 2.5 0 0 0 0-5h-.027z"/>
                 <path d="M10.5 1.5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 1 0v-1zm3.743 1.964a.5.5 0 1 0-.707-.707l-.708.707a.5.5 0 0 0
                 .708.708l.707-.708zm-7.779-.707a.5.5 0 0 0-.707.707l.707.708a.5.5 0 1 0 .708-.708l-.708-.707zm1.734 3.374a2
@@ -74,162 +81,233 @@ Created by Maurice Johnson - 2021
         <br>
     </form>
     <br>
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-        <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+    <svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+        <symbol fill="currentColor" id="exclamation-triangle-fill" viewBox="0 0 16 16">
             <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0
                 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905
                  0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
         </symbol>
     </svg>
     <div class="alert alert-danger alert-dismissible fade show" th:if="${error != null}">
-        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+        <svg aria-label="Danger:" class="bi flex-shrink-0 me-2" height="24" role="img" width="24">
             <use xlink:href="#exclamation-triangle-fill"/>
         </svg>
         <small th:text="${error}"></small>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button"></button>
     </div>
-    <div id="searchSpinner" class="spinner-border" role="status" hidden="true"></div>
+    <div class="spinner-border" hidden="true" id="searchSpinner" role="status"></div>
 
-    <div id="currentWeatherCard" class="card" th:if="${location} != null">
-        <div class="card-body" align="center" style="display: inline">
-            <img id="currentIcon"
-                 th:src="'http://openweathermap.org/img/wn/'+${hourlyForecast.get(0).getWeather().get(0).getIcon()}+'@2x.png'"
-                 alt="" width="100px" height="100px">
-            <h4 class="card-title" style="font-weight: bolder" id="fullLocation" th:text="${location}"></h4>
-            <span class="card-text" id="currentTime"
-                  th:text="'As of ' + ${currentForecast.unixDateConverter(currentForecast.getDt(), 'EEEE, MMM d, yyyy, h:mm a')}"></span><br><br>
-            <h4 id="mainTemp" style="display: inline;" class="card-text"
-                th:text="${currentForecast.getTemp()}+'°'"></h4><br>
-            <span class="card-text" th:text="'Feels like '+ ${currentForecast.getFeelsLike()}+'°'"></span><br>
-            <span style="font-weight: bolder" class="card-text"
-                  th:text="${dailyForecasts.get(0).getTemp().getMax()}+'°'"></span>
-            <span class="card-text" th:text="' High / '+${dailyForecasts.get(0).getTemp().getMin()}+'° Low'"></span><br><br>
-            <span class="card-text" th:text="${currentForecast.getWeather().get(0).getDescription()}"></span><br>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wind"
-                 viewBox="0 0 16 16">
-                <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0
+    <div class="card" id="currentWeatherCard" th:if="${location} != null">
+        <div align="center" id="mainCardBody" class="card-body row container-fluid justify-content-center" style="display: inline; width: 100%">
+            <div id="currentLocationDiv " align="center" class="mainCardTableColumn col" style="width: 100%">
+                <img height="100px" id="currentIcon" th:src="'http://openweathermap.org/img/wn/'+${hourlyForecast.get(0).getWeather().get(0).getIcon()}+'@2x.png'" width="100px">
+                <h3 class="card-title" id="fullLocation" style="font-weight: bolder" th:text="${location}"></h3>
+                <span class="card-text" id="currentTime"
+                      th:text="'As of ' + ${currentForecast.unixDateConverter(currentForecast.getDt(), 'EEEE, MMM d, yyyy, h:mm a')}"></span><br><br>
+                <h4 class="card-text" id="mainTemp" style="display: inline;"
+                    th:text="${currentForecast.getTemp()}+'°'"></h4><br>
+                <span class="card-text"
+                      th:text="'Feels like '+ ${currentForecast.getFeelsLike()}+'°'"></span><br>
+                <span class="card-text" style="font-weight: bolder"
+                      th:text="${dailyForecasts.get(0).getTemp().getMax()}+'°'"></span>
+                <span class="card-text"
+                      th:text="' High / '+${dailyForecasts.get(0).getTemp().getMin()}+'° Low'"></span><br><br>
+                <span class="card-text"
+                      th:text="${currentForecast.getWeather().get(0).getDescription()}"></span><br>
+                <svg class="bi bi-wind" fill="currentColor" height="16" viewBox="0 0 16 16"
+                     width="16"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0
                      0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0
                       0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z"/>
-            </svg>
-            <span class="card-text" th:text="'Speed: '+ ${currentForecast.getWindSpeed()}+'MPH'"></span><br>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wind"
-                 viewBox="0 0 16 16">
-                <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z"/>
-            </svg>
-            <span class="card-text" th:text="'Gust: '+ ${currentForecast.getWindGust()}+'MPH'"></span><br>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sunrise"
-                 viewBox="0 0 16 16">
-                <path d="M7.646 1.146a.5.5 0 0 1 .708 0l1.5 1.5a.5.5 0 0 1-.708.708L8.5 2.707V4.5a.5.5 0 0 1-1 0V2.707l-.646.647a.5.5 0 1 1-.708-.708l1.5-1.5zM2.343 4.343a.5.5 0 0 1 .707 0l1.414 1.414a.5.5 0 0 1-.707.707L2.343 5.05a.5.5 0 0 1 0-.707zm11.314 0a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zM8 7a3 3 0 0 1 2.599 4.5H5.4A3 3 0 0 1 8 7zm3.71 4.5a4 4 0 1 0-7.418 0H.499a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1h-3.79zM0 10a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 0 10zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
-            </svg>
-            <span class="card-text"
-                  th:text="${currentForecast.unixDateConverter(currentForecast.getSunrise(), 'hh:mm a')}"></span><br>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sunset"
-                 viewBox="0 0 16 16">
-                <path d="M7.646 4.854a.5.5 0 0 0 .708 0l1.5-1.5a.5.5 0 0 0-.708-.708l-.646.647V1.5a.5.5 0 0 0-1 0v1.793l-.646-.647a.5.5 0 1 0-.708.708l1.5 1.5zm-5.303-.51a.5.5 0 0 1 .707 0l1.414 1.413a.5.5 0 0 1-.707.707L2.343 5.05a.5.5 0 0 1 0-.707zm11.314 0a.5.5 0 0 1 0 .706l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zM8 7a3 3 0 0 1 2.599 4.5H5.4A3 3 0 0 1 8 7zm3.71 4.5a4 4 0 1 0-7.418 0H.499a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1h-3.79zM0 10a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 0 10zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
-            </svg>
-            <span class="card-text"
-                  th:text="${currentForecast.unixDateConverter(currentForecast.getSunset(), 'hh:mm a')}"></span><br>
+                </svg>
+                <span class="card-text" th:text="'Speed: '+ ${currentForecast.getWindSpeed()}+'MPH'"></span><br>
+                <svg class="bi bi-wind" fill="currentColor" height="16" viewBox="0 0 16 16"
+                     width="16"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+                <span class="card-text"
+                      th:text="'Gust: '+ ${currentForecast.getWindGust()}+'MPH'"></span><br>
+                <svg class="bi bi-sunrise" fill="currentColor" height="16" viewBox="0 0 16 16"
+                     width="16"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.646 1.146a.5.5 0 0 1 .708 0l1.5 1.5a.5.5 0 0 1-.708.708L8.5 2.707V4.5a.5.5 0 0 1-1 0V2.707l-.646.647a.5.5 0 1 1-.708-.708l1.5-1.5zM2.343 4.343a.5.5 0 0 1 .707 0l1.414 1.414a.5.5 0 0 1-.707.707L2.343 5.05a.5.5 0 0 1 0-.707zm11.314 0a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zM8 7a3 3 0 0 1 2.599 4.5H5.4A3 3 0 0 1 8 7zm3.71 4.5a4 4 0 1 0-7.418 0H.499a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1h-3.79zM0 10a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 0 10zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+                <span class="card-text"
+                      th:text="${currentForecast.unixDateConverter(currentForecast.getSunrise(), 'hh:mm a')}"></span><br>
+                <svg class="bi bi-sunset" fill="currentColor" height="16" viewBox="0 0 16 16"
+                     width="16"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.646 4.854a.5.5 0 0 0 .708 0l1.5-1.5a.5.5 0 0 0-.708-.708l-.646.647V1.5a.5.5 0 0 0-1 0v1.793l-.646-.647a.5.5 0 1 0-.708.708l1.5 1.5zm-5.303-.51a.5.5 0 0 1 .707 0l1.414 1.413a.5.5 0 0 1-.707.707L2.343 5.05a.5.5 0 0 1 0-.707zm11.314 0a.5.5 0 0 1 0 .706l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zM8 7a3 3 0 0 1 2.599 4.5H5.4A3 3 0 0 1 8 7zm3.71 4.5a4 4 0 1 0-7.418 0H.499a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1h-3.79zM0 10a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 0 10zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+                <span class="card-text"
+                      th:text="${currentForecast.unixDateConverter(currentForecast.getSunset(), 'hh:mm a')}"></span><br>
+                <br>
+            </div>
+            <div class="mainCardTableColumn col" style="width: 100%">
+                <div class="" id="dailyDivContent">
+                    <br>
+                    <div text-center>
+                        <h3 align="center" class="componentTitle">8 Day Forecast</h3>
+                        <br>
+                    </div>
+                    <div class="overflow-auto" id="dailyForecastDiv" th:if="${location} != null" style="width: 100%">
+                        <div th:each="dailyForecast, iter : ${dailyForecasts}" style="width: 100%">
+                            <div class="dailyRowClass row align-items-center" th:id="${'dailyRow'+iter.index}" align="left" style="width: 100%">
+                                <span style="font-weight: bolder" class="dailyData col-sm-2" th:text="${dailyForecast.unixDateConverter(dailyForecast.getDt(), 'EEE dd')}"></span>
+                                <span class="dailyData col-sm-2">
+                                    <h6 style="font-weight: bolder; display: inline; padding: 0"
+                                        th:text="${dailyForecast.getTemp().getMax()}+'°'"></h6>
+                                    <span th:text="'/'+${dailyForecast.getTemp().getMin()}+'°'"></span>
+                                </span>
+                                <span class="dailyData col-sm-5">
+                                    <img height="50px" th:src="'http://openweathermap.org/img/wn/'+${dailyForecast.getWeather().get(0).getIcon()}+'@2x.png'" width="50px">
+                                    <span th:text="${dailyForecast.getWeather().get(0).getDescription()}"></span>
+                                </span>
+                                <span class="dailyData col-sm-2">
+                                    <svg class="bi bi-wind" fill="currentColor"
+                                         height="16"
+                                         viewBox="0 0 16 16" width="16"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z"/>
+                                    </svg>
+                                    <span th:text="${dailyForecast.getWindSpeed()+' MPH'}"></span>
+                                </span>
+                                <span class="dailyData col-sm-1">
+                                    <svg class="bi bi-arrow-down-circle myLink" fill="currentColor" height="16" th:id="${'downArrow'+iter.index}" viewBox="0 0 16 16"
+                                         width="16" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"
+                                                                      fill-rule="evenodd"/>
+                                    </svg>
+                                    <svg class="bi bi-arrow-up-circle myLink"
+                                         fill="currentColor" height="16"
+                                         th:id="${'upArrow'+iter.index}" viewBox="0 0 16 16"
+                                         width="16"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"
+                                              fill-rule="evenodd"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div hidden="true" th:id="${'dailyDetailRow'+iter.index}">
+                                <div class="row">
+                                    <div class="col" style="display: inline">
+                                        <span style="font-weight: bolder">Day</span>
+                                        <h2 th:text="${dailyForecast.getTemp().getDay()}+'°'"></h2>
+                                        <h6 th:text="'Feels like '+${dailyForecast.getFeelsLike().getDay()+'°'}"></h6>
+                                    </div>
+                                    <div class="col" style="display: inline">
+                                        <span style="font-weight: bolder">Night</span>
+                                        <h2 th:text="${dailyForecast.getTemp().getNight()}+'°'"></h2>
+                                        <h6 th:text="'Feels like '+${dailyForecast.getFeelsLike().getNight()+'°'}"></h6>
+                                    </div>
+                                </div>
+                                <div hidden="true" th:id="${'dailyDetailRowExtra'+iter.index}">
+                                    <div id="detailsCard" class="card">
+                                        <div class="card-body container">
+                                            <div class="row align-items-center justify-content-between">
+                                                <span class="col-sm-5" th:text="'Humidity: '+${dailyForecast.getHumidity()}+'%'"></span>
+                                                <th style="padding: 0 30px"></th>
+                                                <span class="col-sm-5" th:text="'Cloud coverage: '+${dailyForecast.getClouds()}+'%'"></span>
+                                            </div>
+                                            <div class="row align-items-center justify-content-between">
+                                                <span class="col-sm-5">
+                                                    <svg class="bi bi-wind" fill="currentColor" height="16" viewBox="0 0 16 16"
+                                                         width="16"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z"/>
+                                                    </svg>
+                                                    <span th:text="'Wind Speed: '+${dailyForecast.getWindSpeed()}+'MPH'"></span>
+                                                </span>
+                                                <span class="col-sm-5">
+                                                    <svg class="bi bi-wind" fill="currentColor" height="16" viewBox="0 0 16 16"
+                                                         width="16"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z"/>
+                                                    </svg>
+                                                    <span th:text="'Wind Gust: '+${dailyForecast.getWindGust()}+'MPH'"></span>
+                                                </span>
+                                            </div>
+                                            <div class="row align-items-center justify-content-between">
+                                                <span class="col-sm-5" th:text="'Dew Point: '+${dailyForecast.getDewPoint()}+'°'"></span>
+                                                <th style="padding: 0 30px"></th>
+                                                <span class="col-sm-5" th:text="'UV Index: '+${dailyForecast.getUvi()}+' out of 10'"></span>
+                                            </div>
+                                            <div class="row align-items-center justify-content-between">
+                                                <span class="col-sm-5">
+                                                    <svg class="bi bi-sunrise" fill="currentColor" height="16" viewBox="0 0 16 16"
+                                                         width="16"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M7.646 1.146a.5.5 0 0 1 .708 0l1.5 1.5a.5.5 0 0 1-.708.708L8.5 2.707V4.5a.5.5 0 0 1-1 0V2.707l-.646.647a.5.5 0 1 1-.708-.708l1.5-1.5zM2.343 4.343a.5.5 0 0 1 .707 0l1.414 1.414a.5.5 0 0 1-.707.707L2.343 5.05a.5.5 0 0 1 0-.707zm11.314 0a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zM8 7a3 3 0 0 1 2.599 4.5H5.4A3 3 0 0 1 8 7zm3.71 4.5a4 4 0 1 0-7.418 0H.499a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1h-3.79zM0 10a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 0 10zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
+                                                    </svg>
+                                                    <span th:text="${currentForecast.unixDateConverter(dailyForecast.getSunrise(), 'hh:mm a')}"></span>
+                                                </span>
+                                                <span class="col-sm-5">
+                                                    <svg class="bi bi-sunset" fill="currentColor" height="16" viewBox="0 0 16 16"
+                                                         width="16"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M7.646 4.854a.5.5 0 0 0 .708 0l1.5-1.5a.5.5 0 0 0-.708-.708l-.646.647V1.5a.5.5 0 0 0-1 0v1.793l-.646-.647a.5.5 0 1 0-.708.708l1.5 1.5zm-5.303-.51a.5.5 0 0 1 .707 0l1.414 1.413a.5.5 0 0 1-.707.707L2.343 5.05a.5.5 0 0 1 0-.707zm11.314 0a.5.5 0 0 1 0 .706l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zM8 7a3 3 0 0 1 2.599 4.5H5.4A3 3 0 0 1 8 7zm3.71 4.5a4 4 0 1 0-7.418 0H.499a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1h-3.79zM0 10a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 0 10zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
+                                                    </svg>
+                                                    <span th:text="${currentForecast.unixDateConverter(dailyForecast.getSunset(), 'hh:mm a')}"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <br>
-            <small id="toggleDailyForecast" style="text-decoration: underline dotted; font-weight: bolder"
-                   class="myLink" data-bs-toggle="collapse" data-bs-target="#sevenDayDivCollapse">Show 7 Day Forecast
-            </small>
-            <small id="toggleHourlyForecast"
-                   style="padding: 0 0 0 15px; text-decoration: underline dotted; font-weight: bolder" class="myLink"
-                   data-bs-toggle="collapse" data-bs-target="#hourlyDivCollapse">Show Hourly Forecast
-            </small>
+            <br>
+            <div class="mainCardTableColumn col">
+                <div id="hourlyDivContent">
+                    <br>
+                    <div text-center>
+                        <h3 align="center" class="componentTitle">Hourly Forecast</h3>
+                        <br>
+                    </div>
+                    <div class="overflow-auto container-fluid" id="hourlyForecastDiv" th:if="${location} != null">
+                        <div class="row align-items-center" th:each="hourly, iter : ${hourlyForecast}">
+                            <span style="font-weight: bolder" class="col-sm-3" th:text="${hourly.unixDateConverter(hourly.getDt(), 'EEE h:mm a')}"></span>
+                            <span class="col-sm-2" style="font-weight: bolder" th:text="${hourly.getTemp()+'°'}"></span>
+                            <span class="col-sm-5">
+                                <img height="50px" th:src="'http://openweathermap.org/img/wn/'+${hourly.getWeather().get(0).getIcon()}+'@2x.png'" width="50px">
+                                <span th:text="${hourly.getWeather().get(0).getDescription()}"></span>
+                            </span>
+                            <span class="col-sm-2">
+                                <svg class="bi bi-wind" fill="currentColor"
+                                     height="16"
+                                     viewBox="0 0 16 16" width="16"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z"/>
+                                </svg>
+                                <span th:text="${hourly.getWindSpeed()}+' MPH'"></span>
+                            </span>
+                            <br>
+                            <br>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <table id="dailyHourlyTable" style="padding: 0 0 50px 0;">
-        <br>
-        <tr id="tableRow">
-            <td>
-                <div id="sevenDayDivCollapse" class="collapse">
-                    <div id="dailyDialog">
-                        <div id="dailyDivContent">
-                            <div text-center>
-                                <h3 align="center" class="componentTitle">7 Day Forecast</h3>
-                            </div>
-                            <div id="dailyForecastDiv" th:if="${location} != null">
-                                <table id="dailyForecastTable" class="table align-middle">
-                                    <tbody>
-                                    <tr th:each="dailyForecast, iter : ${dailyForecasts}" th:if="${iter.index} != 0">
-                                        <td class="align-middle" th:text="${dailyForecast.unixDateConverter(dailyForecast.getDt(), 'EEE dd')}"></td>
-                                        <td class="align-middle"><h5 style="font-weight: bolder; display: inline; padding: 0"
-                                                th:text="${dailyForecast.getTemp().getMax()}+'°'"></h5>
-                                            <span th:text="'/ '+${dailyForecast.getTemp().getMin()}+'°'"></span></td>
-                                        <!--
-                                                                <td th:text="${dailyForecast.getHumidity()}+'% Humidity'"></td>
-                                        -->
-                                        <td class="align-middle"><img
-                                                th:src="'http://openweathermap.org/img/wn/'+${dailyForecast.getWeather().get(0).getIcon()}+'@2x.png'"
-                                                alt="" width="50px" height="50px">
-                                            <span th:text="${dailyForecast.getWeather().get(0).getDescription()}"></span>
-                                        </td>
-                                        <td class="align-middle" style="padding: 0 0 0 0px">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                 fill="currentColor" class="bi bi-wind" viewBox="0 0 16 16">
-                                                <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z"/>
-                                            </svg>
-                                            <span th:text="${dailyForecast.getWindSpeed()+' MPH'}"></span>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </td>
-            <td></td>
-            <td></td>
-            <td>
-                <div id="hourlyDivCollapse" class="collapse" style="padding: 0 0 15px 0;">
-                    <div id="hourlyDialog">
-                        <div id="hourlyDivContent">
-                            <div text-center>
-                                <h3 class="componentTitle" align="center">Hourly Forecast</h3>
-                            </div>
-                            <div class="overflow-auto" id="hourlyForecastDiv" th:if="${location} != null">
-                                <table id="hourlyForecastTable" class="table align-middle">
-                                    <tbody>
-                                    <tr th:each="hourly, iter : ${hourlyForecast}">
-                                        <!--                        <td style="font-weight: bolder; color: #E07A5F;" th:if="${hourly.unixDateConverter(hourly.getDt(), 'hh:mm a')} == '12:00 AM'"
-                                                                    th:text="${currentForecast.unixDateConverter(hourly.getDt(), 'EEE MMM dd')}"></td>-->
-                                        <td th:text="${hourly.unixDateConverter(hourly.getDt(), 'h:mm a')}"></td>
-                                        <td style="font-weight: bolder" th:text="${hourly.getTemp()+'°'}"></td>
-                                        <td><img
-                                                th:src="'http://openweathermap.org/img/wn/'+${hourly.getWeather().get(0).getIcon()}+'@2x.png'"
-                                                alt="" width="50px" height="50px">
-                                            <span th:text="${hourly.getWeather().get(0).getDescription()}"></span>
-                                        </td>
-                                        <td style="padding: 0 0 0 0px">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                 fill="currentColor" class="bi bi-wind" viewBox="0 0 16 16">
-                                                <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z"/>
-                                            </svg>
-                                            <span th:text="${hourly.getWindSpeed()}+' MPH'"></span>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </td>
-        </tr>
-    </table>
     <br>
     <br>
 </div>
 
-<h3 id="mapTitle" align="center" class="componentTitle">Radar</h3>
+<h3 align="center" class="componentTitle" id="mapTitle">Radar</h3>
 <div id="map"></div>
 
-<footer id="termsPpFooter" class="container-fluid text-center">
+<footer class="container-fluid text-center" id="termsPpFooter">
     <br><br>
-    <a class="myLink" href="/terms">Terms and Conditions</a><span> | </span><a class="myLink" href="/privacy">Privacy Policy</a>
+    <a class="myLink" href="/terms">Terms and Conditions</a><span> | </span><a class="myLink" href="/privacy">Privacy
+    Policy</a>
 </footer>
 
 <script th:inline="javascript">
