@@ -190,8 +190,8 @@ Created by Maurice Johnson - 2021
                                     </svg>
                                 </span>
                             </div>
-                            <div hidden="true" th:id="${'dailyDetailRow'+iter.index}">
-                                <div class="row">
+                            <div hidden="true" th:id="${'dailyDetailRow'+iter.index}" style="width: 100%">
+                                <div class="row" style="width: 100%">
                                     <div class="col" style="display: inline">
                                         <span style="font-weight: bolder">Day</span>
                                         <h2 th:text="${dailyForecast.getTemp().getDay()}+'°'"></h2>
@@ -203,7 +203,7 @@ Created by Maurice Johnson - 2021
                                         <h6 th:text="'Feels like '+${dailyForecast.getFeelsLike().getNight()+'°'}"></h6>
                                     </div>
                                 </div>
-                                <div hidden="true" th:id="${'dailyDetailRowExtra'+iter.index}">
+                                <div hidden="true" th:id="${'dailyDetailRowExtra'+iter.index}" style="width: 100%">
                                     <div id="detailsCard" class="card">
                                         <div class="card-body container">
                                             <div class="row align-items-center justify-content-between">
