@@ -21,6 +21,7 @@ public class DailyForecast {
     private FeelsLike feelsLike;
     private long pressure;
     private int humidity;
+    @JsonProperty("dew_point")
     private int dewPoint;
     private int uvi;
     private int clouds;
