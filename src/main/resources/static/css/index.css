@@ -26,6 +26,9 @@
         padding-bottom: 40px;
         font-size: 16px;
     }
+    #locError{
+        width: 85%;
+    }
 
 }
 
@@ -52,7 +55,12 @@
     #dailyDivContent, #hourlyDivContent {
         width: 100%;
     }
+    #locError{
+        width: 400px;
+    }
 }
+
+
 #fullLocation{
     overflow: hidden;
     white-space: normal;
