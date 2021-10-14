@@ -124,11 +124,12 @@ public class IndexController {
             if (existingCookies.length < 3) j = existingCookies.length;
             else j = 3;
 
-            for (int i = existingCookies.length - 1; i >= existingCookies.length - j; i--) {
+            for (int i = existingCookies.length - 1; i >= 0; i--) {
                 if (existingCookies[i].getName().contains("location")) {
                     String recentLocNameModified = existingCookies[i].getValue()
                             .replaceAll("commaspace", ", ").replace("space", " ");
                     lastThreeLocNames.add(recentLocNameModified);
+                    if (lastThreeLocNames.size() == 3) break;
                 }
             }
         }
