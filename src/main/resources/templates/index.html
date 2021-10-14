@@ -101,7 +101,7 @@ Created by Maurice Johnson - 2021
         <div align="center" id="mainCardBody" class="card-body row container-fluid justify-content-center" style="display: inline; width: 100%">
             <div id="currentLocationDiv " align="center" class="mainCardTableColumn col" style="width: 100%">
                 <img height="100px" id="currentIcon" th:src="'http://openweathermap.org/img/wn/'+${hourlyForecast.get(0).getWeather().get(0).getIcon()}+'@2x.png'" width="100px">
-                <h3 class="card-title" id="fullLocation" style="font-weight: bolder" th:text="${location}"></h3>
+                <h1 class="card-title" id="fullLocation" style="font-weight: bolder" th:text="${location}"></h1>
                 <span class="card-text" id="currentTime"
                       th:text="'As of ' + ${currentForecast.unixDateConverter(currentForecast.getDt(), 'EEEE, MMM d, yyyy, h:mm a')}"></span><br><br>
                 <h4 class="card-text" id="mainTemp" style="display: inline;"
@@ -262,6 +262,8 @@ Created by Maurice Johnson - 2021
                 </div>
             </div>
             <br>
+            <br>
+            <hr style="color: #3A506B; border-top: 4px dotted #8c8b8b;">
             <br>
             <div class="mainCardTableColumn col">
                 <div id="hourlyDivContent">

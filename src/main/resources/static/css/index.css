@@ -15,7 +15,7 @@
     #currentWeatherCard {
         width: 100%;
         color: #3D405B;
-        border: #3A506B 2px dashed;
+        border: #3A506B 1px dashed;
     }
     #dailyDivContent, #hourlyDivContent {
         width: 100%;
@@ -39,7 +39,7 @@
     #currentWeatherCard {
         width: 80%;
         color: #3D405B;
-        border: #3A506B 2px dashed;
+        border: #3A506B 1px dashed;
     }
     #dailyDivContent, #hourlyDivContent {
         width: 85%;
@@ -50,7 +50,7 @@
     #currentWeatherCard {
         width: 60%;
         color: #3D405B;
-        border: #3A506B 2px dashed;
+        border: #3A506B 1px dashed;
     }
     #dailyDivContent, #hourlyDivContent {
         width: 100%;
@@ -64,6 +64,8 @@
 #fullLocation{
     overflow: hidden;
     white-space: normal;
+    font-family: 'Lato', sans-serif;
+    font-weight: bolder;
 }
 #location {
     display: inline;
@@ -109,7 +111,7 @@ body {
     z-index: 0;
 }
 #currentWeatherCard:hover {
-    border: #2D82B7 dashed;
+    border: #2D82B7 1px dotted;
 }
 #currentTime{
     color: #2D82B7;
