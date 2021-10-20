@@ -19,17 +19,62 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="HandheldFriendly" content="true">
     <title>EazyWeather</title>
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/title.css">
-    <script src="../js/index.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/index.js"></script>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-custom">
+    <div id="logoTitle" class="navbar-brand d-flex w-50 mr-auto">
+        <img class="logo" th:src="@{/images/logo.png}" width="50px" length="50px"/>
+        <span id="mainTitle" >Eazyweather</span>
+    </div>
+    <button class="navbar-toggler btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapsingNavbar3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        </svg>
+    </button>
+    <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+        <div class="navbar-nav w-100 justify-content-center" style="white-space: nowrap">
+            <form id="searchForm" style="width: 450px;">
+                <div class="input-group mb-3" style="height: 100%; white-space: nowrap">
+                                  <span class="input-group-text" id="currentLocButton">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"/>
+</svg>
+              </span>
+                    <span class="input-group-text">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+</svg>
+              </span>
+                    <input class="form-control" id="location" name="location"
+                           placeholder="Address, City, State or Postal Code" style="width: 100px;" th:value="${inputLocation} == null ? '' : ${inputLocation}" type="text">
+                    <button id="getWeatherLink" type="button" class="btn btn-primary">
+                        Get Weather
+                        <svg class="bi bi-cloud-sun-fill" fill="currentColor" height="16" viewBox="0 0 16 16"
+                             width="16" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.473 11a4.5 4.5 0 0 0-8.72-.99A3 3 0 0 0 3 16h8.5a2.5 2.5 0 0 0 0-5h-.027z"/>
+                            <path d="M10.5 1.5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 1 0v-1zm3.743 1.964a.5.5 0 1 0-.707-.707l-.708.707a.5.5 0 0 0
+                .708.708l.707-.708zm-7.779-.707a.5.5 0 0 0-.707.707l.707.708a.5.5 0 1 0 .708-.708l-.708-.707zm1.734 3.374a2
+                2 0 1 1 3.296 2.198c.199.281.372.582.516.898a3 3 0 1 0-4.84-3.225c.352.011.696.055 1.028.129zm4.484 4.074c.6.215
+                1.125.59 1.522 1.072a.5.5 0 0 0 .039-.742l-.707-.707a.5.5 0 0 0-.854.377zM14.5 6.5a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div id="endNavDiv" class="nav navbar-nav ml-auto w-100 justify-content-end" style="height: 100%; padding-right: 10px">
+
+        </div>
+    </div>
+</nav>
+<br>
+<br>
 <br>
 <div id="mainDiv" align="center">
-    <h1 id="mainTitle">eazyweather</h1>
     <br>
     <br>
     <br>
@@ -54,10 +99,11 @@
 
     var latitude = /*[[${latitude}]]*/ 'default';
     var longitude = /*[[${longitude}]]*/ 'default';
+    var unit = /*[[${unit}]]*/ 'default';
 
     /*]]>*/
 </script>
 <canvas class="background"></canvas>
-<script src="../js/particles.js"></script>
+<script src="/js/particles.js"></script>
 </body>
 </html>
