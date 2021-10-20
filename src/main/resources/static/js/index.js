@@ -3,6 +3,17 @@
  */
 $(document).ready(function () {
 
+    $('#unitSelect').val(unit)
+
+    $('#unitSelect').change(function () {
+        var selectedItem = $('#unitSelect').val();
+        if (latitude == null && longitude == null){
+            window.location.href ="/home/"+selectedItem
+        } else {
+            window.location.href ="/home/"+selectedItem+"?location="+$('#location').val()
+        }
+    });
+
     $(".bi-arrow-up-circle").attr("display", "none");
     $('.dailyDetailExtraCard').attr("display", "none")
 
@@ -17,6 +28,10 @@ $(document).ready(function () {
     });
 
     $( "#mainTitle" ).click(function( event ) {
+        event.preventDefault();
+        window.location.href ="/"
+    });
+    $( ".logo" ).click(function( event ) {
         event.preventDefault();
         window.location.href ="/"
     });
@@ -50,8 +65,9 @@ $(document).ready(function () {
         event.preventDefault();
         $(".recentLoc").prop('disabled', true);
         showSpinner();
-        window.location.href = "/home?location=" + $(this).text()
+        window.location.href = "/home/"+$('#unitSelect').val()+"?location=" + $(this).text()
     });
+
 
     $('#location').keypress(function (e) {
         if (e.which == 13) {
@@ -94,7 +110,7 @@ function processInputLocation(event){
         showSpinner()
         $("#currentLocButton").prop('disabled', true);
         $("#getWeatherLink").prop('disabled', true);
-        window.location.href = "/home?location=" + $('#location').val()
+        window.location.href = "/home/"+$('#unitSelect').val()+"?location=" + $('#location').val()
     }
 }
 
@@ -124,7 +140,7 @@ function getLocation() {
 }
 
 function showPosition(position) {
-    window.location.href = "/home?location="+position.coords.longitude+","+position.coords.latitude;
+    window.location.href = "/home/"+$('#unitSelect').val()+"?location="+position.coords.longitude+","+position.coords.latitude;
 }
 
 function positionFailed(error) {
@@ -179,6 +195,10 @@ function createMap(){
             container: "map"
         });
 
+        view.on("mouse-wheel", function(evt) {
+            // disable mouse wheel scroll zooming on the view
+            evt.stopPropagation();
+        });
 
         const graphicsLayer = new GraphicsLayer();
         map.add(graphicsLayer);
