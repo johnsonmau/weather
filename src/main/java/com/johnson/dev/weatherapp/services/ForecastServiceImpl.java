@@ -19,18 +19,18 @@ public class ForecastServiceImpl implements ForecastService {
     private RestTemplate restTemplate = new RestTemplate();
 
     @Override
-    public Forecast getForecast(String loc) {
+    public Forecast getForecast(String loc, String unit) {
 
         GeocodedLocation geocodedLocation = geocoderService.geocode(loc);
 
         String longitude = geocodedLocation.getFeatures().get(0).getCoordinates().get(0).toString();
         String latitude = geocodedLocation.getFeatures().get(0).getCoordinates().get(1).toString();
 
-        return getWeather(latitude, longitude);
+        return getWeather(latitude, longitude, unit);
     }
 
     @Override
-    public LocationAndForecast getForecastAndLocation(String loc) {
+    public LocationAndForecast getForecastAndLocation(String loc, String unit) {
 
         LOG.info("Entered Location: {}",loc);
 
@@ -42,7 +42,7 @@ public class ForecastServiceImpl implements ForecastService {
                 String longitude = geocodedLocation.getFeatures().get(0).getCoordinates().get(0).toString();
                 String latitude = geocodedLocation.getFeatures().get(0).getCoordinates().get(1).toString();
 
-                Forecast forecast = getWeather(latitude, longitude);
+                Forecast forecast = getWeather(latitude, longitude, unit);
 
                 if (forecast != null) {
                     return new LocationAndForecast(geocodedLocation, forecast);
@@ -54,9 +54,9 @@ public class ForecastServiceImpl implements ForecastService {
         return null;
     }
 
-    private Forecast getWeather(String lat, String lon){
+    private Forecast getWeather(String lat, String lon, String unit){
         String apiKey = "f41fd73b971e31844dd49ea032087ae4";
-        String temperatureUnit = "imperial";
+        String temperatureUnit = unit.equalsIgnoreCase("c") ? "metric" : "imperial";
         String reqUrl = "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&units="+temperatureUnit+"&appid="+apiKey;
         LOG.info("Weather URL {}",reqUrl);
         ResponseEntity<Forecast> weatherReq = restTemplate.getForEntity(reqUrl, Forecast.class);

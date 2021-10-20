@@ -5,7 +5,7 @@ import com.johnson.dev.weatherapp.models.LocationAndForecast;
 
 
 public interface ForecastService {
-    Forecast getForecast(String loc);
-    LocationAndForecast getForecastAndLocation(String loc);
+    Forecast getForecast(String loc, String unit);
+    LocationAndForecast getForecastAndLocation(String loc, String unit);
 
 }
