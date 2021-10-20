@@ -20,7 +20,7 @@ public class ForecastRestController {
     }
 
     @GetMapping(value = "/rest/forecast/v1", produces = "application/json")
-    public @ResponseBody Forecast getForecast(@RequestParam String loc){
-        return forecastService.getForecast(loc);
+    public @ResponseBody Forecast getForecast(@RequestParam String loc, @RequestParam String unit){
+        return forecastService.getForecast(loc, unit);
     }
 }
