@@ -1,17 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato&family=Pacifico&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Calistoga&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&family=Yeseva+One&display=swap');
+
+
+@media (max-width: 990px) {
+#searchForm, #unitSelect, #unitDiv {
+    width: 100%!important;
+}
+    #unitSelect{
+        text-align: center!important;
+    }
+    #endNavDiv{
+        padding-right: 0px!important;
+    }
+    .scrollImg{
+        width: 95%!important;
+    }
+}
 
 @media only screen and (max-width: 700px) {
     /* For mobile phones: */
     #mainTitle {
         font-size: 45px!important;
     }
-
     #map {
         padding: 0% 3% 60% 3%;
     }
-
+    #showRecentLoc{
+        font-size: 20px!important;
+    }
     #currentWeatherCard {
         width: 100%;
         color: #3D405B;
@@ -64,8 +79,9 @@
 #fullLocation{
     overflow: hidden;
     white-space: normal;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-weight: bolder;
+    width: 75%;
 }
 #location {
     display: inline;
@@ -74,7 +90,7 @@
     display: inline;
 }
 #errorTitle404{
-    font-family: 'Patua One', cursive;
+    font-family: 'Raleway', sans-serif;
     font-size: 85px;
     text-shadow: -3px 0 #2D82B7, 0 3px #2D82B7, 3px 0 #2D82B7, 0 -3px #2D82B7;
     font-weight: bolder;
@@ -100,7 +116,7 @@ html, body {
     width: 100%!important;
 }
 body {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Raleway', sans-serif;
     background-color: whitesmoke;
 }
 .background {
@@ -110,12 +126,17 @@ body {
     left: 0;
     z-index: 0;
 }
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #2D82B7 !important;
+}
 #currentWeatherCard:hover {
     border: #2D82B7 1px dotted;
 }
 #currentTime{
     color: #2D82B7;
     font-weight: bold;
+    overflow: hidden;
+    white-space: normal;
 }
 #mainDiv, #termsPpFooter {
     position:relative;
@@ -125,14 +146,32 @@ body {
     width: 100%;
 }
 #mainTitle{
-    text-decoration: underline;
-    font-family: 'Calistoga', cursive;
-    font-size: 80px;
-    color: #3A506B;
+    font-family: 'Raleway', sans-serif;
+    font-size: 35px;
+    color: whitesmoke;
+    text-shadow: 0 0 3px #2D82B7, 0 0 5px #2D82B7;
+}
+.logo{
+    -webkit-filter: drop-shadow(1px 1px 0 #2D82B7)
+    drop-shadow(-1px -1px 0 #2D82B7);
+    filter: drop-shadow(1px 1px 0 #2D82B7)
+    drop-shadow(-1px -1px 0 #2D82B7);
+}
+.logo:hover{
+    -webkit-filter: drop-shadow(1px 1px 0 whitesmoke)
+    drop-shadow(-1px -1px 0 whitesmoke);
+    filter: drop-shadow(1px 1px 0 whitesmoke)
+    drop-shadow(-1px -1px 0 whitesmoke);
+}
+#logoTitle:hover{
+    cursor: pointer;
+    color: #2D82B7;
+}
+#showRecentLoc{
+    font-size: 25px;
 }
 #mainTitle:hover{
-    cursor: pointer;
-    color: #2D82B7
+    text-shadow: 0 0 3px whitesmoke, 0 0 5px whitesmoke;
 }
 .myLink:hover{
     font-weight: bolder;
@@ -146,12 +185,8 @@ body {
     width:30%;
 }
 #currentLocButton:hover {
-    color: #2D82B7;
     cursor: pointer;
     text-decoration: underline;
-}
-#currentLocButton {
-    color: #3A506B;
 }
 .customError {
     border:1px solid red;
@@ -163,22 +198,42 @@ body {
     z-index:9999;
 }
 
+nav, #demoSlide, .navbar-collapse {
+    position:relative;
+    z-index:9999;
+}
+.navbar-custom {
+    opacity: 0.8;
+    background-color: rgb(51,51,51);
+}
 .componentTitle {
     font-weight: bolder;
-    color: #3A506B;
-    font-family: 'Calistoga', cursive;
+    color: #2D82B7;
+    font-family: 'Raleway', sans-serif;
 }
 #getWeatherLink{
     word-wrap:break-word;
-    display: block;
 }
 #hourlyForecastDiv, #dailyForecastDiv{
     height: 350px;
     width: 100%;
+    background-color: #3A506B;
+    color: whitesmoke;
+}
+#detailsCard{
+    background-color: #2D82B7;
+    border: whitesmoke 1px dotted;
+    width: 92%;
 }
 .mainCardTableColumn {
     margin: 0 auto;
 }
 #mainCardBody{
     margin: 0 auto;
+}
+span {
+    font-size: 21px;
+}
+small, p {
+    font-size: 17px;
 }
