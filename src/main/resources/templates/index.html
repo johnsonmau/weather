@@ -41,6 +41,7 @@ Created by Maurice Johnson - 2021
     <div id="logoTitle" class="navbar-brand d-flex w-50 mr-auto">
         <img class="logo" th:src="@{/images/logo.png}" width="50px" length="50px"/>
         <span id="mainTitle" >Eazyweather</span>
+        <img class="logo" th:src="@{/images/logo.png}" width="50px" length="50px"/>
     </div>
     <button class="navbar-toggler btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapsingNavbar3">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -89,7 +90,6 @@ Created by Maurice Johnson - 2021
 </nav>
 <br>
 <br>
-<br>
 <div align="center" id="mainDiv" class="container-fluid">
     <div id="locError" class="alert alert-danger alert-dismissible fade show" th:if="${error != null}">
         <svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
@@ -122,8 +122,9 @@ Created by Maurice Johnson - 2021
     </div>
     <br>
     <br>
+    <br>
 
-    <p style="font-weight: lighter;">
+    <p>
         Quickly get the weather in your<br> area or anywhere you'd like!<br><br>You
         can easily choose between <br>a current, hourly,
         or daily forecast.
@@ -147,10 +148,10 @@ Created by Maurice Johnson - 2021
                 <img th:src="@{/images/blizzard.jpeg}" alt="Blizzard!" class="d-block scrollImg" height="100%" width="50%">
             </div>
             <div class="carousel-item">
-                <img th:src="@{/images/sunnyday.jpeg}" alt="Sunny Day!" class="d-block scrollImg" height="100%" width="50%">
+                <img th:src="@{/images/rainstorm.jpeg}" alt="Thunderstorm!" class="d-block scrollImg" height="100%" width="50%">
             </div>
             <div class="carousel-item">
-                <img th:src="@{/images/rainstorm.jpeg}" alt="Thunderstorm!" class="d-block scrollImg" height="100%" width="50%">
+                <img th:src="@{/images/sunnyday.jpeg}" alt="Sunny Day!" class="d-block scrollImg" height="100%" width="50%">
             </div>
         </div>
     </div>
@@ -251,12 +252,12 @@ Created by Maurice Johnson - 2021
                             <div hidden="true" th:id="${'dailyDetailRow'+iter.index}" style="width: 100%; border-top: 1px dotted whitesmoke">
                                 <div class="row" style="width: 100%">
                                     <div class="col" style="display: inline">
-                                        <span style="font-weight: bolder">Day</span>
+                                        <span th:text="${dailyForecast.unixDateConverter(dailyForecast.getDt(), 'EEE')}+' - Day'" style="font-weight: bolder"></span>
                                         <h2 th:text="${dailyForecast.getTemp().getDay()}+'°'"></h2>
                                         <h6 th:text="'Feels like '+${dailyForecast.getFeelsLike().getDay()+'°'}"></h6>
                                     </div>
                                     <div class="col" style="display: inline">
-                                        <span style="font-weight: bolder">Night</span>
+                                        <span th:text="${dailyForecast.unixDateConverter(dailyForecast.getDt(), 'EEE')}+' - Night'" style="font-weight: bolder"></span>
                                         <h2 th:text="${dailyForecast.getTemp().getNight()}+'°'"></h2>
                                         <h6 th:text="'Feels like '+${dailyForecast.getFeelsLike().getNight()+'°'}"></h6>
                                     </div>

@@ -79,7 +79,14 @@
     }
 }
 
-
+#recentLocCollapse{
+    font-weight: bolder;
+    font-style: italic;
+}
+p {
+    font-weight: bold;
+    color: #3A506B;
+}
 #fullLocation{
     overflow: hidden;
     white-space: normal;
